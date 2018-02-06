@@ -1,0 +1,21 @@
+:root {}
+
+body {
+	padding: 0;
+	margin: 0;
+	width: 100vw;
+	height: 100vh;
+}
+
+.clock-container {
+	width: 60vw;
+	height: 60vh;
+	margin-left: 20vw;
+	margin-top: 20vh;
+}
+
+#clock-hand {
+	position: absolute;
+	top: 26%;
+	left: 26%;
+}
