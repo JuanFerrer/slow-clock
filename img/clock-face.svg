@@ -15,7 +15,7 @@
    id="svg2"
    version="1.1"
    inkscape:version="0.91 r13725"
-   sodipodi:docname="clock-face-start.svg">
+   sodipodi:docname="clock-face.svg">
   <defs
      id="defs4" />
   <sodipodi:namedview
@@ -26,19 +26,19 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="11.2"
-     inkscape:cx="18.432437"
-     inkscape:cy="-11.601509"
+     inkscape:cx="48.599168"
+     inkscape:cy="13.511874"
      inkscape:document-units="px"
      inkscape:current-layer="layer5"
      showgrid="false"
      units="px"
      showguides="true"
      inkscape:guide-bbox="true"
-     inkscape:window-width="1920"
-     inkscape:window-height="1017"
-     inkscape:window-x="1912"
-     inkscape:window-y="-8"
-     inkscape:window-maximized="1">
+     inkscape:window-width="742"
+     inkscape:window-height="405"
+     inkscape:window-x="2859"
+     inkscape:window-y="425"
+     inkscape:window-maximized="0">
     <sodipodi:guide
        position="50.002551,124.5013"
        orientation="1,0"
@@ -64,7 +64,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -418,7 +418,7 @@
          sodipodi:role="line"
          id="tspan4950"
          x="32.764633"
-         y="-104.67699">13</tspan></text>
+         y="-104.67699">19</tspan></text>
     <rect
        inkscape:transform-center-x="-35.665298"
        transform="matrix(-0.38268343,0.92387953,-0.92387953,-0.38268343,0,0)"
@@ -456,7 +456,7 @@
          y="-111.7632"
          x="15.655969"
          id="tspan4958"
-         sodipodi:role="line">14</tspan></text>
+         sodipodi:role="line">20</tspan></text>
     <rect
        style="display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:5;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
        id="rect4960"
@@ -494,7 +494,7 @@
          sodipodi:role="line"
          id="tspan4966"
          x="-2.594861"
-         y="-114.17279">15</tspan></text>
+         y="-114.17279">21</tspan></text>
     <rect
        inkscape:transform-center-x="-23.642669"
        transform="matrix(-0.79335334,0.60876143,-0.60876143,-0.79335334,0,0)"
@@ -532,7 +532,7 @@
          y="-111.79572"
          x="-20.967278"
          id="tspan4974"
-         sodipodi:role="line">16</tspan></text>
+         sodipodi:role="line">22</tspan></text>
     <rect
        style="display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:5;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
        id="rect4976"
@@ -570,7 +570,7 @@
          sodipodi:role="line"
          id="tspan4982"
          x="-37.974083"
-         y="-104.71944">17</tspan></text>
+         y="-104.71944">23</tspan></text>
     <rect
        inkscape:transform-center-x="-5.2850124"
        transform="matrix(-0.99144486,0.13052619,-0.13052619,-0.99144486,0,0)"
