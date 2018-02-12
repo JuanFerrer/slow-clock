@@ -39,15 +39,3 @@ body {
 	height: 85vh;
 	position: relative;
 }
-
-/*@media only screen and (orientation: landscape) {
-	.clock-face-container, .clock-hand-container {
-		height: 100vh;
-	}
-}
-
-@media only screen and (orientation: portrait) {
-	.clock-face-container, .clock-hand-container {
-		width: 100vw;
-	}
-}*/
