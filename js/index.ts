@@ -3,7 +3,7 @@ let date: Date;
 const clockFaceId = "#clock-face";
 const clockHandId = "#clock-hand";
 
-const secsInDay = 86400;
+const sInDay = 86400;
 
 // #region Functions
 let resize = () => {
@@ -14,25 +14,44 @@ let resize = () => {
 	$(clockHandId).attr("height", "70%");
 };
 
+/**
+ * Get the amount of seconds that have passed from the beginning of the day to the given date
+ * @param d Date
+ */
 let getSecondsFromDate = (d: Date) => {
-	let seconds = d.getSeconds();
-	seconds += d.getMinutes() * 60;
-	seconds += d.getHours() * 60 * 60;
-	return seconds;
+	let s = d.getSeconds();
+	s += d.getMinutes() * 60;
+	s += d.getHours() * 60 * 60;
+	return s;
 };
 
+/**
+ * Get and angle from the specified seconds that have passed
+ * @param s Seconds
+ */
 let angleFromSeconds = (s: number) => {
-	return (s / secsInDay) * 360;
+	return (s / sInDay) * 360;
 };
 
-let setHandRotation = (angle: number) => {
-	$(clockHandId).css("transform", `rotate(${angle + 180}deg)`)
+/**
+ * Set the rotation of the hand to the specified angle
+ * @param a Angle
+ */
+let setHandRotation = (a: number) => {
+	$(clockHandId).css("transform", `rotate(${a + 180}deg)`)
 };
 
+/**
+ * Set the rotation of the hand from a given date
+ * @param d Date
+ */
 let setHandFromDate = (d: Date) => {
 	setHandRotation(angleFromSeconds(getSecondsFromDate(d)));
 };
 
+/**
+ * Update the time every second
+*/
 let updateTime = () => {
 	date = new Date();
 	console.log(`${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`);
@@ -41,13 +60,16 @@ let updateTime = () => {
 	window.setTimeout(updateTime, 1000);
 };
 
+/**
+ * Main function
+*/
 let main = () => {
 	resize();
-	let date = new Date();
-	setHandFromDate(date);
+	let d = new Date();
+	setHandFromDate(d);
 
 	// Start to update every second
-	window.setTimeout(updateTime, 1000 - date.getMilliseconds());
+	window.setTimeout(updateTime, 1000 - d.getMilliseconds());
 };
 
 // #endregion
