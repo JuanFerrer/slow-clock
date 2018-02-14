@@ -3,6 +3,7 @@ const clockFaceId = "#clock-face";
 const clockHandId = "#clock-hand";
 const sInDay = 86400;
 // #region Functions
+/** Resize the clock to fit the screen */
 let resize = () => {
     $(clockFaceId).attr("width", "100%");
     $(clockFaceId).attr("height", "100%");
@@ -40,18 +41,14 @@ let setHandRotation = (a) => {
 let setHandFromDate = (d) => {
     setHandRotation(angleFromSeconds(getSecondsFromDate(d)));
 };
-/**
- * Update the time every second
-*/
+/** Update the time every second */
 let updateTime = () => {
     date = new Date();
     console.log(`${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`);
     setHandFromDate(date);
     window.setTimeout(updateTime, 1000);
 };
-/**
- * Main function
-*/
+/** Main function */
 let main = () => {
     resize();
     let d = new Date();
