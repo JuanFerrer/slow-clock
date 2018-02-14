@@ -1,3 +1,5 @@
+declare var tippy: any;
+
 let date: Date;
 
 let sunEventsDates = {
@@ -15,6 +17,8 @@ const noonContainerId = "#noon-icon-container";
 const noonId = "#noon-icon";
 const sunsetContainerId = "#sunset-icon-container";
 const sunsetId = "#sunset-icon";
+
+const infoId = "#info-icon-container";
 
 const sInDay = 86400;
 
@@ -62,6 +66,7 @@ let angleFromSeconds = (s: number) => {
  * @param a Angle
  */
 let setElementRotation = (e: string, a: number) => {
+	// Since all elements point up, we need to turn them upside down first
 	$(e).css("transform", `rotate(${a + 180}deg)`)
 };
 
@@ -94,6 +99,29 @@ let setIconsRotation = (xhr) => {
 
 	setRotationFromDate(sunsetContainerId, sunEventsDates.sunset);
 	setRotationFromDate(sunsetId, sunEventsDates.sunset, true);
+
+	$(".icon-container img").css("visibility", "visible");
+};
+
+/** Get sun events and display them on the clock face */
+let showSunEvents = () => {
+	if (navigator.geolocation) {
+		navigator.geolocation.getCurrentPosition((position) => {
+			$.ajax({
+				url: `https://api.sunrise-sunset.org/json?lat=${position.coords.latitude}&lng=${position.coords.longitude}&formatted=0`,
+				error: (e) => { console.log(e); },
+				success: (d) => {
+					if (d.status == "OK") {
+						populateSunEventsDates(d);
+					}
+				},
+				complete: setIconsRotation,
+			});
+		});
+	} else {
+		$(infoId).attr("title", "Something");
+		tippy(infoId);
+	}
 };
 
 /** Update the time every second */
@@ -112,16 +140,7 @@ let main = () => {
 	setRotationFromDate(clockHandId, d);
 
 	// TODO: requires fallback if user blocks
-	if (navigator.geolocation) {
-		navigator.geolocation.getCurrentPosition((position) => {
-			$.ajax({
-				url: `https://api.sunrise-sunset.org/json?lat=${position.coords.latitude}&lng=${position.coords.longitude}&formatted=0`,
-				error: (e) => { console.log(e); },
-				success: populateSunEventsDates,
-				complete: setIconsRotation,
-			});
-		});
-	}
+	showSunEvents();
 
 	// Start to update every second
 	window.setTimeout(updateTime, 1000 - d.getMilliseconds());

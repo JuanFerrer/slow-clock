@@ -37,6 +37,13 @@ body {
 
 .icon-container img {
 	position: relative;
+	visibility: hidden;
+}
+
+.info-icon-container {
+	position: absolute;
+	left: 10px;
+	top: 10px;
 }
 
 #clock-face {

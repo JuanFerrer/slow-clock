@@ -12,6 +12,7 @@ const noonContainerId = "#noon-icon-container";
 const noonId = "#noon-icon";
 const sunsetContainerId = "#sunset-icon-container";
 const sunsetId = "#sunset-icon";
+const infoId = "#info-icon-container";
 const sInDay = 86400;
 // #region Functions
 /** Resize the clock to fit the screen */
@@ -50,6 +51,7 @@ let angleFromSeconds = (s) => {
  * @param a Angle
  */
 let setElementRotation = (e, a) => {
+    // Since all elements point up, we need to turn them upside down first
     $(e).css("transform", `rotate(${a + 180}deg)`);
 };
 /**
@@ -60,8 +62,10 @@ let setElementRotation = (e, a) => {
 let setRotationFromDate = (e, d, o) => {
     setElementRotation(e, (o ? -1 : 1) * angleFromSeconds(getSecondsFromDate(d)));
 };
-/** */
-let populateSunEventDates = (data) => {
+/**
+ * Populate the sunEventsDates object
+*/
+let populateSunEventsDates = (data) => {
     let parsedData = data.results;
     sunEventsDates.sunrise = new Date(parsedData.sunrise);
     sunEventsDates.noon = new Date(parsedData["solar_noon"]);
@@ -75,6 +79,28 @@ let setIconsRotation = (xhr) => {
     setRotationFromDate(noonId, sunEventsDates.noon, true);
     setRotationFromDate(sunsetContainerId, sunEventsDates.sunset);
     setRotationFromDate(sunsetId, sunEventsDates.sunset, true);
+    $(".icon-container img").css("visibility", "visible");
+};
+/** Get sun events and display them on the clock face */
+let showSunEvents = () => {
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition((position) => {
+            $.ajax({
+                url: `https://api.sunrise-sunset.org/json?lat=${position.coords.latitude}&lng=${position.coords.longitude}&formatted=0`,
+                error: (e) => { console.log(e); },
+                success: (d) => {
+                    if (d.status == "OK") {
+                        populateSunEventsDates(d);
+                    }
+                },
+                complete: setIconsRotation,
+            });
+        });
+    }
+    else {
+        $(infoId).attr("title", "Something");
+        tippy(infoId);
+    }
 };
 /** Update the time every second */
 let updateTime = () => {
@@ -89,16 +115,7 @@ let main = () => {
     let d = new Date();
     setRotationFromDate(clockHandId, d);
     // TODO: requires fallback if user blocks
-    if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition((position) => {
-            $.ajax({
-                url: `https://api.sunrise-sunset.org/json?lat=${position.coords.latitude}&lng=${position.coords.longitude}&formatted=0`,
-                error: (e) => { console.log(e); },
-                success: populateSunEventDates,
-                complete: setIconsRotation,
-            });
-        });
-    }
+    showSunEvents();
     // Start to update every second
     window.setTimeout(updateTime, 1000 - d.getMilliseconds());
 };
