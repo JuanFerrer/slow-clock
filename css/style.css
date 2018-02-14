@@ -29,6 +29,16 @@ body {
 	justify-self: center;
 }
 
+.icon-container {
+	grid-area: a;
+	align-self: center;
+	justify-self: center;
+}
+
+.icon-container img {
+	position: relative;
+}
+
 #clock-face {
 	width: 100vw;
 	height: 100vh;

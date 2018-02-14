@@ -1,7 +1,20 @@
 let date: Date;
 
+let sunEventsDates = {
+	sunrise: new Date(),
+	noon: new Date(),
+	sunset: new Date()
+};
+
 const clockFaceId = "#clock-face";
 const clockHandId = "#clock-hand";
+
+const sunriseContainerId = "#sunrise-icon-container";
+const sunriseId = "#sunrise-icon";
+const noonContainerId = "#noon-icon-container";
+const noonId = "#noon-icon";
+const sunsetContainerId = "#sunset-icon-container";
+const sunsetId = "#sunset-icon";
 
 const sInDay = 86400;
 
@@ -14,6 +27,14 @@ let resize = () => {
 
 	$(clockHandId).attr("width", "70%");
 	$(clockHandId).attr("height", "70%");
+
+	let widthGreaterThanHeight = $(clockFaceId).width() > $(clockFaceId).height();
+
+	let clockFaceSize = (widthGreaterThanHeight ? $(clockFaceId).height() : $(clockFaceId).width());
+	let iconSize = clockFaceSize * 0.1;
+	$(".icon-container img").attr("width", iconSize);
+	$(".icon-container img").attr("height", iconSize);
+	$(".icon-container img").css("top", -((clockFaceSize / 2) - clockFaceSize * 0.22));
 };
 
 /**
@@ -36,19 +57,43 @@ let angleFromSeconds = (s: number) => {
 };
 
 /**
- * Set the rotation of the hand to the specified angle
+ * Set the rotation of the element to the specified angle
+ * @parem e Element
  * @param a Angle
  */
-let setHandRotation = (a: number) => {
-	$(clockHandId).css("transform", `rotate(${a + 180}deg)`)
+let setElementRotation = (e: string, a: number) => {
+	$(e).css("transform", `rotate(${a + 180}deg)`)
 };
 
 /**
- * Set the rotation of the hand from a given date
+ * Set the rotation of the element from a given date
+ * @param e Element
  * @param d Date
  */
-let setHandFromDate = (d: Date) => {
-	setHandRotation(angleFromSeconds(getSecondsFromDate(d)));
+let setRotationFromDate = (e: string, d: Date, o?: boolean) => {
+	setElementRotation(e, (o ? -1 : 1) * angleFromSeconds(getSecondsFromDate(d)));
+};
+
+/**
+ * Populate the sunEventsDates object
+*/
+let populateSunEventsDates = (data) => {
+	let parsedData = data.results;
+	sunEventsDates.sunrise = new Date(parsedData.sunrise);
+	sunEventsDates.noon = new Date(parsedData["solar_noon"]);
+	sunEventsDates.sunset = new Date(parsedData.sunset);
+};
+
+/** Prepare sunrise and sunset icons */
+let setIconsRotation = (xhr) => {
+	setRotationFromDate(sunriseContainerId, sunEventsDates.sunrise);
+	setRotationFromDate(sunriseId, sunEventsDates.sunrise, true);
+
+	setRotationFromDate(noonContainerId, sunEventsDates.noon);
+	setRotationFromDate(noonId, sunEventsDates.noon, true);
+
+	setRotationFromDate(sunsetContainerId, sunEventsDates.sunset);
+	setRotationFromDate(sunsetId, sunEventsDates.sunset, true);
 };
 
 /** Update the time every second */
@@ -56,7 +101,7 @@ let updateTime = () => {
 	date = new Date();
 	console.log(`${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`);
 
-	setHandFromDate(date);
+	setRotationFromDate(clockHandId, date);
 	window.setTimeout(updateTime, 1000);
 };
 
@@ -64,7 +109,19 @@ let updateTime = () => {
 let main = () => {
 	resize();
 	let d = new Date();
-	setHandFromDate(d);
+	setRotationFromDate(clockHandId, d);
+
+	// TODO: requires fallback if user blocks
+	if (navigator.geolocation) {
+		navigator.geolocation.getCurrentPosition((position) => {
+			$.ajax({
+				url: `https://api.sunrise-sunset.org/json?lat=${position.coords.latitude}&lng=${position.coords.longitude}&formatted=0`,
+				error: (e) => { console.log(e); },
+				success: populateSunEventsDates,
+				complete: setIconsRotation,
+			});
+		});
+	}
 
 	// Start to update every second
 	window.setTimeout(updateTime, 1000 - d.getMilliseconds());
