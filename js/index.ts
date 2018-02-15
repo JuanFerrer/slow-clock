@@ -1,4 +1,4 @@
-declare var tippy: any;
+var Tooltip: any;
 
 let date: Date;
 
@@ -19,6 +19,8 @@ const sunsetContainerId = "#sunset-icon-container";
 const sunsetId = "#sunset-icon";
 
 const infoId = "#info-icon-container";
+
+let infoTooltip;
 
 const sInDay = 86400;
 
@@ -117,17 +119,16 @@ let showSunEvents = () => {
 				},
 				complete: setIconsRotation,
 			});
+		}, (e) => {
+			console.log(e);
 		});
-	} else {
-		$(infoId).attr("title", "Something");
-		tippy(infoId);
 	}
 };
 
 /** Update the time every second */
 let updateTime = () => {
 	date = new Date();
-	console.log(`${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`);
+	//console.log(`${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`);
 
 	setRotationFromDate(clockHandId, date);
 	window.setTimeout(updateTime, 1000);

@@ -1,3 +1,4 @@
+var Tooltip;
 let date;
 let sunEventsDates = {
     sunrise: new Date(),
@@ -13,6 +14,7 @@ const noonId = "#noon-icon";
 const sunsetContainerId = "#sunset-icon-container";
 const sunsetId = "#sunset-icon";
 const infoId = "#info-icon-container";
+let infoTooltip;
 const sInDay = 86400;
 // #region Functions
 /** Resize the clock to fit the screen */
@@ -95,17 +97,15 @@ let showSunEvents = () => {
                 },
                 complete: setIconsRotation,
             });
+        }, (e) => {
+            console.log(e);
         });
-    }
-    else {
-        $(infoId).attr("title", "Something");
-        tippy(infoId);
     }
 };
 /** Update the time every second */
 let updateTime = () => {
     date = new Date();
-    console.log(`${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`);
+    //console.log(`${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`);
     setRotationFromDate(clockHandId, date);
     window.setTimeout(updateTime, 1000);
 };
