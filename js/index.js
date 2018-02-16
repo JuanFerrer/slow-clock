@@ -130,10 +130,11 @@ let main = () => {
 // #region Event handlers
 window.onresize = resize;
 $("#sun-events-switch").change((e) => {
-    if ($("#sun-events-switch").val()) {
+    if ($("#sun-events-switch").attr("checked")) {
         showSunEvents();
     }
     else {
+        $("#sun-events-switch").removeAttr("checked");
         hideSunEvents();
     }
 });
