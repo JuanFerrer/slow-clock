@@ -13,8 +13,13 @@
 </head>
 
 <body>
-	<div class="info-icon-container">
-		<img id="info-icon" src="./img/info.svg" data-toggle="popover" data-trigger="hover" data-content="Empty" alt="">
+	<div class="buttons-container container d-flex flex-column justify-content-center">
+		<button class="settings-icon-container" data-toggle="modal" data-target="#settings-modal">
+			<img id="settings-icon" src="./img/settings.svg" alt="">
+		</button>
+		<div class="info-icon-container" data-toggle="popover" data-trigger="hover" data-content="Empty">
+			<img id="info-icon" src="./img/info.svg" alt="">
+		</div>
 	</div>
 	<div class="clock-container">
 		<div class="clock-face-container">
@@ -31,6 +36,27 @@
 		</div>
 		<div class="icon-container" id="sunset-icon-container">
 			<img id="sunset-icon" src="./img/sunset.svg" alt="">
+		</div>
+	</div>
+	<div class="modal" id="settings-modal" tabindex="-1" role="dialog" aria-labelledby="#settings-modal-title">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="settings-modal-title">Settings</h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<div class="container d-flex flew-row">
+						<div class="block">
+							<input class="switch" data-index="1" id="sun-events-switch" type="checkbox" />
+							<label class="switch-background" for="sun-events-switch"></label>
+						</div>
+						<div class="switch-label">Sun events</div>
+					</div>
+				</div>
+			</div>
 		</div>
 	</div>
 

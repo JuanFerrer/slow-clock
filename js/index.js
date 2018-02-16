@@ -12,7 +12,7 @@ const noonContainerId = "#noon-icon-container";
 const noonId = "#noon-icon";
 const sunsetContainerId = "#sunset-icon-container";
 const sunsetId = "#sunset-icon";
-const infoId = "#info-icon";
+const infoId = ".info-icon-container";
 let infoTooltip;
 const sInDay = 86400;
 // #region Functions
@@ -104,6 +104,10 @@ let showSunEvents = () => {
         });
     }
 };
+/** Hide sun events icons*/
+let hideSunEvents = () => {
+    $(".icon-container img").css("visibility", "hidden");
+};
 /** Update the time every second */
 let updateTime = () => {
     date = new Date();
@@ -125,5 +129,13 @@ let main = () => {
 // #endregion
 // #region Event handlers
 window.onresize = resize;
+$("#sun-events-switch").change((e) => {
+    if ($("#sun-events-switch").val()) {
+        showSunEvents();
+    }
+    else {
+        hideSunEvents();
+    }
+});
 // #endregion
 main();

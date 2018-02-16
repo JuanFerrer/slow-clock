@@ -8,6 +8,35 @@ body {
 	overflow: hidden;
 }
 
+.buttons-container {
+	width: 54px;
+	position: absolute;
+	padding: 10px;
+	left: 0px;
+	top: 0px;
+}
+
+.info-icon-container {
+	padding: 5px;
+	visibility: hidden;
+	z-index: 1;
+}
+
+.settings-icon-container {
+	border: none;
+	background-color: transparent;
+	padding: 5px;
+	z-index: 1;
+}
+
+#settings-icon {
+	transition: transform 100ms ease-in-out;
+}
+
+#settings-icon:hover {
+	transform: scale(1.2);
+}
+
 .clock-container {
 	width: 100vw;
 	height: 100vh;
@@ -40,15 +69,6 @@ body {
 	visibility: hidden;
 }
 
-.info-icon-container {
-	position: absolute;
-	padding: 10px;
-}
-
-#info-icon {
-	visibility: hidden;
-}
-
 #clock-face {
 	width: 100vw;
 	height: 100vh;
@@ -58,4 +78,54 @@ body {
 	width: 85vw;
 	height: 85vh;
 	position: relative;
+}
+
+/***** Switch *****/
+
+.switch {
+	display: none;
+}
+
+.block {
+	margin: 5px;
+}
+
+.switch-background {
+	width: 50px;
+	height: 30px;
+	box-sizing: border-box;
+	border: 3px solid;
+	float: left;
+	border-radius: 100px;
+	position: relative;
+	cursor: pointer;
+	transition: .3s ease;
+	margin-bottom: 0px;
+}
+
+.switch-label {
+	align-self: center;
+}
+
+input[type=checkbox]:checked+label {
+	background: #55e868;
+}
+
+input[type=checkbox]:checked+label:before {
+	left: 22px;
+}
+
+label:before {
+	transition: .3s ease;
+	content: '';
+	width: 20px;
+	height: 20px;
+	position: absolute;
+	background: white;
+	left: 2px;
+	top: 2px;
+	box-sizing: border-box;
+	border: 3px solid;
+	color: black;
+	border-radius: 100px;
 }
