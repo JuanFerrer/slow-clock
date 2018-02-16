@@ -82,7 +82,6 @@ let setIconsRotation = (xhr) => {
     setRotationFromDate(sunsetContainerId, sunEventsDates.sunset);
     setRotationFromDate(sunsetId, sunEventsDates.sunset, true);
     $(".icon-container img").css("visibility", "visible");
-    $(infoId).css("visibility", "visible");
 };
 /** Get sun events and display them on the clock face */
 let showSunEvents = () => {
