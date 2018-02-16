@@ -106,6 +106,7 @@ let setIconsRotation = (xhr) => {
 	setRotationFromDate(sunsetId, sunEventsDates.sunset, true);
 
 	$(".icon-container img").css("visibility", "visible");
+	$(infoId).css("visibility", "visible");
 };
 
 /** Get sun events and display them on the clock face */
@@ -124,6 +125,7 @@ let showSunEvents = () => {
 			});
 		}, (e) => {
 			console.log(e);
+			$(infoId).css("visibility", "visible");
 			$(infoId).attr("data-content", "Geolocation disabled");
 		});
 	}

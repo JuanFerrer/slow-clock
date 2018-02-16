@@ -45,6 +45,10 @@ body {
 	padding: 10px;
 }
 
+#info-icon {
+	visibility: hidden;
+}
+
 #clock-face {
 	width: 100vw;
 	height: 100vh;
