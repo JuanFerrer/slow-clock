@@ -1,4 +1,6 @@
-var Tooltip: any;
+interface JQuery {
+	popover(): JQuery;
+}
 
 let date: Date;
 
@@ -18,7 +20,7 @@ const noonId = "#noon-icon";
 const sunsetContainerId = "#sunset-icon-container";
 const sunsetId = "#sunset-icon";
 
-const infoId = "#info-icon-container";
+const infoId = "#info-icon";
 
 let infoTooltip;
 
@@ -64,7 +66,7 @@ let angleFromSeconds = (s: number) => {
 
 /**
  * Set the rotation of the element to the specified angle
- * @parem e Element
+ * @param e Element
  * @param a Angle
  */
 let setElementRotation = (e: string, a: number) => {
@@ -76,6 +78,7 @@ let setElementRotation = (e: string, a: number) => {
  * Set the rotation of the element from a given date
  * @param e Element
  * @param d Date
+ * @param o Opposite
  */
 let setRotationFromDate = (e: string, d: Date, o?: boolean) => {
 	setElementRotation(e, (o ? -1 : 1) * angleFromSeconds(getSecondsFromDate(d)));
@@ -121,6 +124,7 @@ let showSunEvents = () => {
 			});
 		}, (e) => {
 			console.log(e);
+			$(infoId).attr("data-content", "Geolocation disabled");
 		});
 	}
 };
@@ -136,6 +140,8 @@ let updateTime = () => {
 
 /** Main function */
 let main = () => {
+	$('[data-toggle="popover"]').popover();
+
 	resize();
 	let d = new Date();
 	setRotationFromDate(clockHandId, d);

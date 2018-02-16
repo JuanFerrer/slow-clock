@@ -7,12 +7,14 @@
 	<link rel="icon" href="./favicon.ico">
 	<title>Slow Clock</title>
 
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+	 crossorigin="anonymous">
 	<link rel="stylesheet" href="./css/style.css">
 </head>
 
 <body>
 	<div class="info-icon-container">
-		<img id="info-icon" src="./img/info.svg" alt="">
+		<img id="info-icon" src="./img/info.svg" data-toggle="popover" data-trigger="hover" data-content="Empty" alt="">
 	</div>
 	<div class="clock-container">
 		<div class="clock-face-container">
@@ -35,6 +37,9 @@
 	<!-- jQuery -->
 	<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
 	 crossorigin="anonymous"></script>
+
+	<!-- Bootstrap -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.bundle.min.js"></script>
 
 	<script src="./js/index.js"></script>
 </body>
