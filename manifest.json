@@ -40,5 +40,6 @@
 			"src": "img/logo.svg",
 			"sizes": "512x512"
 		}
-	]
+	],
+	"theme_color": "#646464"
 }
