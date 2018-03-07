@@ -1,7 +1,7 @@
 {
 	"name": "Slow Clock",
 	"short_name": "Slow",
-	"start_url": ".",
+	"start_url": "/",
 	"display": "standalone",
 	"background_color": "#fff",
 	"description": "A 24-hour, single-hand clock to slow down your life.",
