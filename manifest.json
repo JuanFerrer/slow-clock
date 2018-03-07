@@ -35,6 +35,10 @@
 			"src": "img/logo192.png",
 			"sizes": "192x192",
 			"type": "image/png"
+		},
+		{
+			"src": "img/logo.svg",
+			"sizes": "512x512"
 		}
 	]
 }
