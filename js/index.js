@@ -107,7 +107,7 @@ let showSunEvents = () => {
 		navigator.geolocation.getCurrentPosition((position) => {
 			$.ajax({
 				url: `https://api.sunrise-sunset.org/json?lat=${position.coords.latitude}&lng=${position.coords.longitude}&formatted=0`,
-				error: () => { /*console.log(e);*/ },
+				error: () => { hideSunEvents(); },
 				success: (d) => {
 					if (d.status == "OK") {
 						populateSunEventsDates(d);
