@@ -4,11 +4,13 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no, user-scalable=no">
-	<link rel="icon" type="image/png" href="./favicon.png">
+	<meta name="description" content="A 24-hour, single-hand clock to slow down your life.">
+	<link rel="icon" type="image/png" href="./favicon.ico">
 	<title>Slow Clock</title>
 
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
-	 crossorigin="anonymous">
+	<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+	 crossorigin="anonymous"> -->
+	<link rel="stylesheet" href="./css/bootstrap.min.css">
 	<link rel="stylesheet" href="./css/style.css">
 	<link rel="manifest" href="./manifest.json">
 
@@ -17,14 +19,11 @@
 	<meta name="msapplication-starturl" content="/">
 	<meta name="theme-color" content="#646464">
 
-	<!-- Icons for PWA -->
-	<link rel="icon" sizes="48x48" href="./img/logo48.png">
-	<link rel="icon" sizes="72x72" href="./img/logo72.png">
-	<link rel="icon" sizes="96x96" href="./img/logo96.png">
-	<link rel="icon" sizes="144x144" href="./img/logo144.png">
-	<link rel="icon" sizes="168x168" href="./img/logo168.png">
-	<link rel="icon" sizes="192x192" href="./img/logo192.png">
-	<link rel="icon" sizes="512x512" href="./img/logo.svg">
+	<link rel="apple-touch-icon" sizes="180x180" href="./apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="./favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="./favicon-16x16.png">
+	<link rel="mask-icon" href="./safari-pinned-tab.svg" color="#5bbad5">
+	<meta name="msapplication-TileColor" content="#da532c">
 </head>
 
 <body>
@@ -76,16 +75,27 @@
 	</div>
 
 	<!-- jQuery -->
-	<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-	 crossorigin="anonymous"></script>
+	<!-- <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+	 crossorigin="anonymous"></script> -->
+	<script src="./3rd-party/jquery-3.3.1.min.js"></script>
 
 	<!-- Bootstrap -->
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.bundle.min.js"></script>
-
-	<!-- Service Workers -->
-	<script src="./pwabuilder-sw-register.js"></script>
+	<!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.bundle.min.js"></script> -->
+	<script src="./3rd-party/bootstrap.bundle.min.js"></script>
 
 	<script src="./js/index.js"></script>
+
+	<script>
+		if ('serviceWorker' in navigator) {
+
+			navigator.serviceWorker.register('./service-worker.js')
+				.then(function (reg) {
+					// Registered
+				}).catch(function (err) {
+					// Error
+				});
+		}
+	</script>
 </body>
 
 </html>
